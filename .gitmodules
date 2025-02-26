@@ -1,0 +1,6 @@
+[submodule "orion-emulator"]
+	path = orion-emulator
+	url = https://github.com/KZN-Ltd-Sti/open-hotel-orion-emulator.git
+[submodule "open-hotel-client"]
+	path = open-hotel-client
+	url = https://github.com/KZN-Ltd-Sti/open-hotel-client.git
