@@ -1,8 +1,7 @@
-version: '3'
 services:
   client:
     build: ./open-hotel-client
-    command: 'yarn --cwd packages/client dev --mode=docker'
+    command: 'sh -c "yarn install && yarn dev --host 0.0.0.0"'
     ports:
       - '8081:8080'
     volumes:
@@ -13,8 +12,8 @@ services:
   
   emulator:
     build: ./orion-emulator
-    working_dir: '/sirius/packages/emulator'
-    command: 'yarn dev'
+    working_dir: '/sirius'
+    command: 'sh -c "yarn install && yarn start:dev"'
     ports:
       - '3000:3000'
       - '65432:65432'
@@ -23,10 +22,17 @@ services:
     volumes:
       - ./orion-emulator:/sirius
       - /sirius/node_modules
+    environment:
+      - ARANGODB_URL=http://arangodb:8529
+      - ARANGODB_DATABASE=orion
+      - ARANGODB_USER=root
+      - ARANGODB_PASSWORD=12345
+    depends_on:
+      - arangodb
     networks:
       openHotel: {}
 
-  arango:
+  arangodb:
     image: arangodb/arangodb:3.5.1
     volumes:
       - ./docker/db:/var/lib/arangodb3
