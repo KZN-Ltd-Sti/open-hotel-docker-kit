@@ -1,32 +1,29 @@
 # Docker Kit
 
-Docker Kit is a docker-environment with built-in to run open-hotel
-automatically. You just need to have [docker-compose](https://docs.docker.com/compose/install/)
-installed to run it.
+This repository provides a Docker environment to test the open-hotel project. While the original project is no longer under active development, this setup allows you to explore and test the implementation.
 
-Our packages:
+The environment includes:
+- [Client](https://github.com/KZN-Ltd-Sti/open-hotel-client/)
+- [Orion Emulator](https://github.com/KZN-Ltd-Sti/open-hotel-orion-emulator)
 
-- [Client](https://github.com/open-hotel/open-hotel-client/)
-- [Orion Emulator](https://github.com/open-hotel/orion-emulator)
+## Setup
 
-## How to run the environment
-
-Clone the repositories:
+Clone this repository with submodules:
 
 ```bash
-git clone git@github.com:open-hotel/orion-emulator.git
-git clone git@github.com:open-hotel/open-hotel-client.git
-# or
-./download_repositories.sh
+git clone --recurse-submodules https://github.com/KZN-Ltd-Sti/open-hotel-docker-kit.git
 ```
 
-Build the compose environment:
+Or if you've already cloned the repository:
+
+```bash
+git submodule init
+git submodule update
+```
+
+Build and run:
 
 ```bash
 docker-compose build
 docker-compose up
 ```
-
-Now you should be up and running!
-
-Any problems? [Create an issue](https://github.com/open-hotel/docker-kit/issues/new)
